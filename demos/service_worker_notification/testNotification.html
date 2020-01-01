@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="sw.js"></script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    window.addEventListener('load', function () {
+        if (!navigator.serviceWorker) {
+            alert('Service worker not supported.');
+            return;
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(function (registration) {
+                Notification.requestPermission(function (result) {
+                    if (result === 'granted') {
+                        navigator.serviceWorker.ready.then(function (registration) {
+                            registration.showNotification('Notification with ServiceWorker');
+                        });
+                    }
+                });
+            }, function (err) {
+                alert('注册失败');
+                console.log(err);
+            });
+        } else {
+            alert('浏览器不支持serviceWorker')
+        }
+    });
+    // Notification.requestPermission().then(function (permission) {
+    //     alert('1')
+    //     if (permission === 'granted') {
+    //         navigator.serviceWorker.ready.then(function (registration) {
+    //             registration.showNotification('Notification with ServiceWorker');
+    //         });
+
+    //         alert('11')
+    //         setTimeout(() => {
+    //             var n = new Notification('消息', {
+    //                 body: '有3个女粉丝关注了你，点击查看！',
+    //                 tag: 'linxin',
+    //                 requireInteraction: true,
+    //                 data: {
+    //                     url: 'https://www.google.com'
+    //                 }
+    //             });
+    //             n.onclick = function () {
+    //                 window.open(n.data.url, '_blank');      // 打开网址
+    //                 n.close();                              // 并且关闭通知
+    //             }
+    //         }, 3000);
+    //     } else if (permission === 'denied') {
+    //         alert('222')
+    //         console.log('用户拒绝通知');
+    //     }
+
+    // });
+</script>
