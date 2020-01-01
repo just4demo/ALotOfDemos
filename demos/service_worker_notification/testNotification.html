@@ -23,10 +23,12 @@
                 Notification.requestPermission(function (result) {
                     if (result === 'granted') {
                         navigator.serviceWorker.ready.then(function (registration) {
-                            registration.showNotification('有3个女粉丝关注了你！',{
-                                
+                            registration.showNotification('Vibration Sample', {
+                                body: 'Buzz! Buzz!',
+                                icon: '../images/touch/chrome-touch-icon-192x192.png',
+                                vibrate: [200, 100, 200, 100, 200, 100, 200],
+                                tag: 'vibration-sample'
                             });
-                            
                         });
                     }
                 });
@@ -38,5 +40,5 @@
             alert('浏览器不支持serviceWorker')
         }
     });
-    
+
 </script>
