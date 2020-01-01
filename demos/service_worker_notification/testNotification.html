@@ -23,19 +23,10 @@
                 Notification.requestPermission(function (result) {
                     if (result === 'granted') {
                         navigator.serviceWorker.ready.then(function (registration) {
-                            // registration.showNotification('Notification with ServiceWorker');
-                            var n = new Notification('消息', {
-                                body: '有3个女粉丝关注了你，点击查看！',
-                                tag: 'linxin',
-                                requireInteraction: true,
-                                data: {
-                                    url: 'https://www.google.com'
-                                }
+                            registration.showNotification('有3个女粉丝关注了你！',{
+                                
                             });
-                            n.onclick = function () {
-                                window.open(n.data.url, '_blank');      // 打开网址
-                                n.close();                              // 并且关闭通知
-                            }
+                            
                         });
                     }
                 });
@@ -47,32 +38,5 @@
             alert('浏览器不支持serviceWorker')
         }
     });
-    // Notification.requestPermission().then(function (permission) {
-    //     alert('1')
-    //     if (permission === 'granted') {
-    //         navigator.serviceWorker.ready.then(function (registration) {
-    //             registration.showNotification('Notification with ServiceWorker');
-    //         });
-
-    //         alert('11')
-    //         setTimeout(() => {
-    //             var n = new Notification('消息', {
-    //                 body: '有3个女粉丝关注了你，点击查看！',
-    //                 tag: 'linxin',
-    //                 requireInteraction: true,
-    //                 data: {
-    //                     url: 'https://www.google.com'
-    //                 }
-    //             });
-    //             n.onclick = function () {
-    //                 window.open(n.data.url, '_blank');      // 打开网址
-    //                 n.close();                              // 并且关闭通知
-    //             }
-    //         }, 3000);
-    //     } else if (permission === 'denied') {
-    //         alert('222')
-    //         console.log('用户拒绝通知');
-    //     }
-
-    // });
+    
 </script>
